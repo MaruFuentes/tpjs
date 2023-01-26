@@ -24,7 +24,7 @@ const Calificar =(_nombreMateria)=>{
 }
 
 const Promedio =(notasAcumuladas)=>{
-    return notasAcumuladas/3;
+    return (notasAcumuladas/3).toFixed(2);
 }
 
 
@@ -54,9 +54,9 @@ const Menu =()=>{
         case 3:
           if (alumno !='') {
             alert('Los promedios del alumno: '+alumno+'\n'+
-            Historia+': ' + Promedio(notaHistoria).toFixed(2) +'\n'+
-            Matematica+': ' + Promedio(notaMatematica).toFixed(2) +'\n'+
-            Lengua+': ' + Promedio(notaLengua).toFixed(2) +'\n'
+            Historia+': ' + Promedio(notaHistoria) +'\n'+
+            Matematica+': ' + Promedio(notaMatematica) +'\n'+
+            Lengua+': ' + Promedio(notaLengua) +'\n'
            )
           }else{
             alert('Primero cree el alumno e ingrese las notas')
