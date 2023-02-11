@@ -1,31 +1,69 @@
-let alumno='';
-const Historia = "Historia";
-const Matematica ="Matematica";
-const Lengua = "Lengua";
-let notaHistoria = 0;
-let notaMatematica =0;
-let notaLengua =0;
+let listadoAlumnos=[]
+
+class Materia{
+    constructor(nombreMateria){
+        this.nombre=nombreMateria;
+    }
+    nota1=0;
+    nota2=0;
+    nota3=0;
+
+    Promedio(){
+        return ((this.nota1+this.nota2+this.nota3)/3).toFixed(1)
+    }
+}
+
+class Alumno{
+    constructor(_dni,_nom,_ape,_año){
+        this.dni=_dni
+        this.nombre=_nom
+        this.apellido=_ape
+        this.añoencurso=_año
+    }
+
+    materias=[new Materia('Matematica'),new Materia('Lengua'),new Materia('Historia')];
+}
 
 
+const cargaAlumno=()=>{
+    let dni= parseInt(prompt('Ingrese el dni del alumno'))
+    let nom=prompt('Ingrese el nombre del alumno')
+    let ape=prompt('Ingrse apellido del alumno')
+    let año=prompt('Ingrese el año de curso del alumno');
+    listadoAlumnos.push(new Alumno(dni,nom,ape,año));
+}
 
-const Calificar =(_nombreMateria)=>{
-    let acumuladorDeNotas =0;
-    let nota =0;
-   for(let i =0; i<3; i++){ 
-    do {
-        nota = parseInt(prompt('Ingrese la nota N°'+(i+1)+' Para '+_nombreMateria));
-        if (nota < 1 || nota >10) {
-            alert('Error de nota el valor es entre 1 y 10')
+
+const CalificarAlumno=()=>{
+    let dni =parseInt(prompt('Ingrese dni del alumno'))
+    for (let i = 0; i < listadoAlumnos.length; i++) {
+       if (dni===listadoAlumnos[i].dni){
+        for (let j = 0; j < listadoAlumnos[i].materias.length; j++) {
+            listadoAlumnos[i].materias[j].nota1=parseInt(prompt('Ingrese primer calificacion para '+listadoAlumnos[i].materias[j].nombre))
+            listadoAlumnos[i].materias[j].nota2=parseInt(prompt('Ingrese segunda calificacion para '+listadoAlumnos[i].materias[j].nombre))
+            listadoAlumnos[i].materias[j].nota3=parseInt(prompt('Ingrese tercera calificacion para '+listadoAlumnos[i].materias[j].nombre))
         }
-    } while (nota < 1 || nota >10);
-    acumuladorDeNotas = acumuladorDeNotas + nota;
-   }
-   return acumuladorDeNotas;
+       }
+        
+    }
 }
 
-const Promedio =(notasAcumuladas)=>{
-    return (notasAcumuladas/3).toFixed(2);
+const verpromedio=()=>{
+    let dni =parseInt(prompt('Ingrese dni del alumno'));
+    for (let i = 0; i < listadoAlumnos.length; i++){
+        if (dni===listadoAlumnos[i].dni){
+            alert('El alumno '+listadoAlumnos[i].nombre+ ' del año: '+listadoAlumnos[i].añoencurso+'\n'+
+            'Tiene los siguientes promedios \n'+
+            'Materia: '+listadoAlumnos[i].materias[0].nombre+' Promedio: '+listadoAlumnos[i].materias[0].Promedio()+'\n'+
+            'Materia: '+listadoAlumnos[i].materias[1].nombre+' Promedio: '+listadoAlumnos[i].materias[1].Promedio()+'\n'+
+            'Materia: '+listadoAlumnos[i].materias[2].nombre+' Promedio: '+listadoAlumnos[i].materias[2].Promedio()+'\n'
+            )
+        }
+    }
 }
+
+
+
 
 
 
@@ -40,27 +78,22 @@ const Menu =()=>{
     ))
     switch (opcion) {
         case 1:
-            alumno = prompt('Ingrese el nombre del alumno');
+          cargaAlumno();
             break;
         case 2:
-           if (alumno !='') {
-            notaHistoria = Calificar(Historia);
-            notaMatematica = Calificar(Matematica);
-            notaLengua = Calificar(Lengua);
-           }else{
-            alert('Cargue el nombre del alumno primero')
-           }
+            if (listadoAlumnos.length >0) {
+                CalificarAlumno();
+            }else{
+                alert('Debe dar de alta al menos un alumno')
+            }
             break;   
         case 3:
-          if (alumno !='') {
-            alert('Los promedios del alumno: '+alumno+'\n'+
-            Historia+': ' + Promedio(notaHistoria) +'\n'+
-            Matematica+': ' + Promedio(notaMatematica) +'\n'+
-            Lengua+': ' + Promedio(notaLengua) +'\n'
-           )
-          }else{
-            alert('Primero cree el alumno e ingrese las notas')
-          }
+            if (listadoAlumnos.length >0) {
+                verpromedio()
+            }else{
+                alert('Debe dar de alta al menos un alumno')
+            }
+
             break; 
         case 4:
             alert('Gracias!!! esta ventana se cerrara');
