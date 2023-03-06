@@ -1,0 +1,124 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+.containerbotones {
+    height: 200px;
+    width: 100%;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    
+}
+.btn {
+    margin: 15px;
+}
+
+.containerFormAlta{
+    width: 100%;
+    background-color: #E5DDDC;
+    height: 500px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.formAlta{
+    width: 600px;
+    height: 350px;
+    border: 1px solid #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formAlta span{
+    display: block;
+    margin: 5px;
+}
+.formAlta input{
+   
+    border-radius: 5px;
+    margin: 5px;
+    display: block;
+}
+
+.containerCalificar{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ebe6e5;
+}
+.formBuscar{
+    width: 450px;
+    border: 1px solid #ffff;
+    padding: 15px;
+}
+.containerdatos{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+}
+
+.containernotas{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.sectionnotas{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+
+.formcalificaciones{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cardMateria{
+    width: 195px;
+    height: 200px;
+    background-color: #f7b046;
+    border: 1px solid #8f8a8a;
+    padding: 10px;
+    border-radius: 5px;
+}
+.cardMateria p{
+    font-size: 18px;
+    
+}
+.cardMateria span{
+    font-size: 14px;
+    
+}
+.cardfooter{
+    width: 100%;
+    height: 20px;
+    border-top: 1px solid #8f8a8a;
+}
+.containerpromedio{
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    justify-content: space-evenly;
+    height: 350px;
+    padding: 40px;
+}
+.containerpromedios{
+    background-color: #E5DDDC;
+    padding-top: 15px;
+}
+
+#idpromedios{
+    padding-left: 40px;
+}
+.alert{
+    width: 80%;
+    margin-top: 20px;
+}

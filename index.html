@@ -1,12 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>sistema de calificacion</title>
+
 </head>
+
 <body>
+    <h1>Escuela de Enseñanza Secundaria</h1>
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/The_Woodlands_College_Park_Front_Image.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/The_Woodlands_College_Park_Front_Image.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/The_Woodlands_College_Park_Front_Image.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="containerbotones" id="seleccionbotones">
+        <button type="button" class="btn btn-outline-primary" id="btnAlta">Ingrear alumnos</button>
+
+        <button type="button" class="btn btn-outline-secondary" id="btncalificar">Ingresar Notas</button>
+        <button type="button" class="btn btn-outline-success" id="btnpromedio">Ver notas y Promedio</button>
+
+    </div>
+    <div class="containerFormAlta">
+        <div>
+            <h3>Alta de Alumno</h3>
+            <form action="JavaScript:cargaAlumno()" class="formAlta" id="alta">
+                <span>Ingrese el DNI</span>
+                <input type="number" placeholder="Ingrese el DNI sin puntos" required id="dniinput">
+                <span>Ingrese el Apellido</span>
+                <input type="text" placeholder="Ingrese el Apellido" required id="nmaeinput">
+                <span>Ingrese el Nombre</span>
+                <input type="text" placeholder="Ingrese el Nombre" required id="lasnameinput">
+                <button 
+                    class="btn btn-outline-success" 
+                    type="submit" 
+                    >Enviar</button>
+                    <div class="alert alert-success" role="alert" id="alertAlta" style="display: none;">
+                        El alumno se guardo con exito
+                    </div>
+                    <div class="alert alert-danger" role="alert" id="alertFalloAlta" style="display: none;">
+                        El alumno ya existe en a base
+                    </div>
+            </form>
+            
+            <div>
+                <a href="#seleccionbotones">Volver Arriba</a>
+            </div>
+        </div>
+        <div>
+            <img src="./asset/img/alumnoleyendo.jpg" alt="alumnoleyendo" srcset="">
+        </div>
+
+    </div>
+    <div class="containerCalificar">
+        <div>
+            <h3>Calificar Alumno</h3>
+            <form action="JavaScript:BuscarAlumno('bucaralumnoinput','alertNotas')" class="formBuscar" id="calificar">
+                <span>Ingrese el DNI</span>
+                <input type="number" placeholder="Ingrese el DNI sin puntos" id="bucaralumnoinput">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            <div class="alert alert-danger" role="alert" id="alertNotas" style="display: none;">
+                El alumno no existe verifique el DNI
+               </div>
+          <div class="containerdatos">
+            <h5>Datos del Alumno</h5>
+            <span > <strong>DNI: </strong><span id="dnibuscado"></span></span>
+            <span><strong>Apellido: </strong><span id="nombuscado"></span></span>
+            <span><strong>Nombre: </strong><span id="apebuscado"></span></span>
+
+          </div>
+            <div class="containernotas">
+               <div class="sectionnotas">
+               <form action="JavaScript:CalificarAlumno()" class="formcalificaciones">
+                <div>
+                    <select name="" id="selecMateria" required>
+                        <option value="" disabled selected>Seleccione una materia</option>
+                        <option value="0">Matematicas</option>
+                        <option value="1">Lengua</option>
+                        <option value="2">Historia</option>
+                    </select>
+                </div>
+                <span>Nota 1</span>
+                <input type="number" id="nota1" placeholder="ingrese la primer nota"  min="1" max="10" required>
+                <span>Nota 2</span>
+                <input type="number" id="nota2" placeholder="ingrese la segunda nota"  min="1" max="10" required>
+                <span>Nota 3</span>
+                <input type="number" id="nota3" placeholder="ingrese la tercer nota"  min="1" max="10" required>
+               </div>
+               <div class="sectionnotas">
+                        <button class="btn btn-outline-success" id="btncalificar" type="submit">Guardar</button>
+               </div>
+               </form>
+             
+            </div>
+            <div>
+                <a href="#seleccionbotones">Volver Arriba</a>
+            </div>
+        </div>
+        <div>
+            <img src="./asset/img/calificacionAlumno.jpg" alt="alumnoleyendo" srcset="">
+        </div>
+
+    </div>
+    <div class="containerpromedios">
+        <h3>Ver promedios</h3>
+        <div class="containerbusqueda" id="idpromedios">
+            <form action="JavaScript:BuscarAlumno('bucaralumnoinputnotas','alertPromedio')" class="formBuscar" id="calificar">
+                <span>Ingrese el DNI</span>
+                <input type="number" placeholder="Ingrese el DNI sin puntos" id="bucaralumnoinputnotas">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            <div class="alert alert-danger" role="alert" id="alertPromedio" style="display: none;">
+               El alumno no existe verifique el DNI
+              </div>
+        </div>
+        <div class="containerpromedio" id="promedioplaca">
+            <div class="cardMateria">
+                <div>
+                    <div><strong>Matematicas</strong></div>
+                <div>
+                    <p>Nota 1: <span id="nota1mate"></span></p>
+                    <p>Nota 2: <span id="nota2mate"></span></p>
+                    <p>Nota 3: <span id="nota3mate"></span></p>
+                   <div class="cardfooter">
+                    <p>Promedio <span id="prommate"></span></p>
+                   </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardMateria">
+                <div>
+                    <div><strong>Lengua</strong></div>
+                <div>
+                    <p>Nota 1: <span id="nota1leng"></span></p>
+                    <p>Nota 2: <span id="nota2leng"></span></p>
+                    <p>Nota 3: <span id="nota3leng"></span></p>
+                   <div class="cardfooter">
+                    <p>Promedio <span id="promleng"></span></p>
+                   </div>
+                </div>
+                </div>
+            </div>
+            <div class="cardMateria">
+                <div>
+                    <div><strong>Historia</strong></div>
+                <div>
+                    <p>Nota 1: <span id="nota1hist"></span></p>
+                    <p>Nota 2: <span id="nota2hist"></span></p>
+                    <p>Nota 3: <span id="nota3hist"></span></p>
+                   <div class="cardfooter">
+                    <p>Promedio <span id="promhist"></span></p>
+                   </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <a href="#seleccionbotones">Volver Arriba</a>
+        </div>
+
+    </div>
+
+    
     <script src="./js/script.js"></script>
 </body>
+
 </html>
