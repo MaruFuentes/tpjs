@@ -123,17 +123,19 @@ const BuscarAlumno = (idelemento,idalert) => {
 
     let dni = document.getElementById(idelemento).value
     let existe = false;
-        for (let i = 0; i < listadoAlumnos.length; i++) {
-            if (dni == listadoAlumnos[i].dni) {
-                existe = true;
-                if (idelemento != "bucaralumnoinputnotas") {
-                document.getElementById('dnibuscado').textContent = listadoAlumnos[i].dni
-                document.getElementById('nombuscado').textContent = listadoAlumnos[i].nombre
-                document.getElementById('apebuscado').textContent = listadoAlumnos[i].apellido
+        if (listadoAlumnos) {
+            for (let i = 0; i < listadoAlumnos.length; i++) {
+                if (dni == listadoAlumnos[i].dni) {
+                    existe = true;
+                    if (idelemento != "bucaralumnoinputnotas") {
+                    document.getElementById('dnibuscado').textContent = listadoAlumnos[i].dni
+                    document.getElementById('nombuscado').textContent = listadoAlumnos[i].nombre
+                    document.getElementById('apebuscado').textContent = listadoAlumnos[i].apellido
+                    }
+                    AlumnoRef = i;
                 }
-                AlumnoRef = i;
+        
             }
-    
         }
         if (!existe) {
             document.getElementById(idalert).style.display='block';
