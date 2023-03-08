@@ -99,7 +99,7 @@
             <h3>Calificar Alumno</h3>
             <form action="JavaScript:BuscarAlumno('bucaralumnoinput','alertNotas')" class="formBuscar" id="calificar">
                 <span>Ingrese el DNI</span>
-                <input type="number" placeholder="Ingrese el DNI sin puntos" id="bucaralumnoinput">
+                <input type="number" placeholder="Ingrese el DNI sin puntos" id="bucaralumnoinput" required>
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             <div class="alert alert-danger" role="alert" id="alertNotas" style="display: none;">
@@ -150,7 +150,7 @@
         <div class="containerbusqueda" id="idpromedios">
             <form action="JavaScript:BuscarAlumno('bucaralumnoinputnotas','alertPromedio')" class="formBuscar" id="calificar">
                 <span>Ingrese el DNI</span>
-                <input type="number" placeholder="Ingrese el DNI sin puntos" id="bucaralumnoinputnotas">
+                <input type="number" placeholder="Ingrese el DNI sin puntos" id="bucaralumnoinputnotas" required>
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             <div class="alert alert-danger" role="alert" id="alertPromedio" style="display: none;">

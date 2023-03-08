@@ -82,9 +82,7 @@ const GuardarLocalStorage = () => {
 }
 
 const CargarDesdeLocalstorage = () => {
-    console.log(listadoAlumnos)
     listadoAlumnos = JSON.parse(localStorage.getItem('Alumnos'))
-    console.log(listadoAlumnos)
 }
 
 CargarDesdeLocalstorage()
