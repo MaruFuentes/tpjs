@@ -81,11 +81,18 @@ const GuardarLocalStorage = () => {
     localStorage.setItem('Alumnos', JSON.stringify(listadoAlumnos))
 }
 
-const CargarDesdeLocalstorage = () => {
-    listadoAlumnos = JSON.parse(localStorage.getItem('Alumnos'))
+
+
+const CargaInicial = ()=>{
+    let Arrayaux =  JSON.parse(localStorage.getItem('Alumnos'));
+    if (!Arrayaux) {
+        localStorage.setItem('Alumnos', JSON.stringify(listadoAlumnos)) 
+    }else{
+        listadoAlumnos = JSON.parse(localStorage.getItem('Alumnos'))
+    }
 }
 
-CargarDesdeLocalstorage()
+CargaInicial();
 const verPromedio = () => {
   
     let nota1= listadoAlumnos[AlumnoRef].materias[0].nota1 
