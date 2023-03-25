@@ -122,3 +122,23 @@
     width: 80%;
     margin-top: 20px;
 }
+.containercomentarios{
+    height: 250px;
+    width: 70vw;
+    background-color: #fff;
+    padding: 10px;
+    overflow: auto;
+}
+.sectioncomments{
+    /* display: grid;
+    grid-template-columns: repeat(2, 100px);
+    justify-content: space-evenly; */
+    height: 350px;
+    padding: 40px;
+
+}
+.cardComentario{
+    border: 1px solid #f3f3f3;
+    padding: 7px;
+    margin-bottom: 10px;
+}

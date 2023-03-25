@@ -1,5 +1,6 @@
 let listadoAlumnos = [];
 let AlumnoRef = 0;
+let comentarios =[];
 
 let boton = document.getElementById('btnAlta');
 if (boton) {
@@ -11,6 +12,11 @@ botoncalificar.addEventListener('click', () => { document.location.href = "#cali
 let bonpromedio = document.getElementById('btnpromedio');
 bonpromedio.addEventListener('click',()=>{document.location.href="#idpromedios"})
 
+class Comentario{
+    name='';
+    email='';
+    body='';
+}
 
 
 class Materia {
@@ -40,6 +46,31 @@ const Promedio = (p1, p2, p3) => {
     return ((p1 + p2 + p3) / 3).toFixed(1)
 }
 
+const getComentariosApi = async()=>{
+    fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+    .then((response)=>response.json())
+    .then((json)=> {
+        comentarios=json;
+        cargarComentarios();
+    });
+    
+}
+
+
+const cargarComentarios =()=>{
+    comentarios.forEach(element => {
+        const elemento = document.createElement('div');
+        elemento.className +='cardComentario'
+        const divA = document.createElement('div');
+        divA.innerHTML = 'Nombre: '+element.name+' '+'Email: '+element.email
+        const divB = document.createElement('div');
+        divB.innerHTML = element.body;
+        elemento.appendChild(divA)
+        elemento.appendChild(divB)
+        document.getElementById('comentarios').appendChild(elemento)
+    });
+   
+}
 
 
 
@@ -83,7 +114,8 @@ const GuardarLocalStorage = () => {
 
 
 
-const CargaInicial = ()=>{
+const CargaInicial =async ()=>{
+   await getComentariosApi();
     let Arrayaux =  JSON.parse(localStorage.getItem('Alumnos'));
     if (!Arrayaux) {
         localStorage.setItem('Alumnos', JSON.stringify(listadoAlumnos)) 
